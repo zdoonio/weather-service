@@ -29,28 +29,6 @@ public class WeatherController {
 		this.sequenceGenerator = sequenceGenerator;
 	}
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void init() {
-		weatherRepo.deleteAll();
-
-		Weather weather1 = new Weather("Cloudy", 3, 1014, new Date());
-		weather1.setId(sequenceGenerator.generateSequence(Weather.SEQUENCE_NAME));
-		weatherRepo.save(weather1);
-
-		Weather weather2 = new Weather("Sunny", 24, 1014, new Date());
-		weather2.setId(sequenceGenerator.generateSequence(Weather.SEQUENCE_NAME));
-		weatherRepo.save(weather2);
-
-		Weather weather3 = new Weather("Windy", 11, 1014, new Date());
-		weather3.setId(sequenceGenerator.generateSequence(Weather.SEQUENCE_NAME));
-		weatherRepo.save(weather3);
-
-		Weather weather4 = new Weather("Snow", -3, 1014, new Date());
-		weather4.setId(sequenceGenerator.generateSequence(Weather.SEQUENCE_NAME));
-		weatherRepo.save(weather4);
-
-	}
-
 	@GetMapping("/weather")
 	public List<Weather> getAll() {
 		return weatherRepo.findAll();

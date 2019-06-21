@@ -19,17 +19,17 @@ public class Weather {
 	private String weather;
 	private String weatherDescription;
 	private double temperature;
-	private int pressure;
-	private int humidity;
-	private float temperatureMin;
-	private float temperatureMax;
+	private long pressure;
+	private long humidity;
 	private Date weatherDate;
 	private Date createdDate;
 
-	public Weather(String weather, double temperature, int pressure, Date weatherDate){
+	public Weather(String weather, String weatherDescription, double temperature, long pressure, long humidity, Date weatherDate){
 		this.weather = weather;
+		this.weatherDescription = weatherDescription;
 		this.temperature = temperature;
 		this.pressure = pressure;
+		this.humidity = humidity;
 		this.weatherDate = weatherDate;
 		this.createdDate = new Date();
 	}
@@ -54,20 +54,12 @@ public class Weather {
 		return temperature;
 	}
 
-	public float getPressure() {
+	public long getPressure() {
 		return pressure;
 	}
 
-	public int getHumidity() {
+	public long getHumidity() {
 		return humidity;
-	}
-
-	public float getTemperatureMin() {
-		return temperatureMin;
-	}
-
-	public float getTemperatureMax() {
-		return temperatureMax;
 	}
 
 	public Date getWeatherDate() {
