@@ -12,13 +12,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class WeatherService {
 	private WeatherRepo weatherRepo;
+	private SequenceGeneratorService sequenceGeneratorService;
 
-	public WeatherService(WeatherRepo weatherRepo) {
+	public WeatherService(WeatherRepo weatherRepo, SequenceGeneratorService sequenceGeneratorService) {
 		this.weatherRepo = weatherRepo;
+		this.sequenceGeneratorService = sequenceGeneratorService;
 	}
 
 	public Iterable<Weather> list() {
 		return weatherRepo.findAll();
+	}
+
+	public Weather save(Weather weather) {
+		weather.setId(sequenceGeneratorService.generateSequence(Weather.SEQUENCE_NAME));
+		return weatherRepo.save(weather);
 	}
 
 	public Iterable<Weather> save(List<Weather> weatherList) {
